@@ -41,7 +41,7 @@ export class UserDetailsComponent implements OnInit {
       .subscribe(r => {
         let apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
         if (apiresp.succeeded) {
-          console.log(apiresp.message);
+          console.log(apiresp.message); 
           // this.notificationService.success('Update User', 'User has been successfully updated');
         }
         else {
