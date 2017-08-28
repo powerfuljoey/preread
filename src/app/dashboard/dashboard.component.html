@@ -1,0 +1,53 @@
+<div class="animated fadeIn">
+    <md-card>
+        <md-card-title>
+            <md-progress-bar color="primary" *ngIf="showLineChartLoader" style="margin:0 auto;" mode="indeterminate"></md-progress-bar>
+            <span class="title">
+        Today
+      </span>
+            <md-button-toggle-group class="actions" value="1">
+                <md-button-toggle value="1" (click)="getLineChart(1)">
+                    Day
+                </md-button-toggle>
+                <md-button-toggle value="2" (click)="getLineChart(2)">
+                    Month
+                </md-button-toggle>
+                <md-button-toggle value="3" (click)="getLineChart(3)">
+                    Year
+                </md-button-toggle>
+            </md-button-toggle-group>
+            <br>
+        </md-card-title>
+        <md-card-content>
+            <div>
+                <canvas baseChart #lineChart="base-chart" [options]="mainChartOptions" [colors]="mainChartColours" [legend]="mainChartLegend" [chartType]="mainChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </md-card-content>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="text-muted">Unique</div>
+                <strong>24.093 Users (20%)</strong>
+                <md-progress-bar class="docfailedbar" [value]="docAuthFailedValue" [bufferValue]="20">
+                </md-progress-bar>
+            </div>
+            <div class="col-sm-3">
+                <div class="text-muted">Unique</div>
+                <strong>24.093 Users (20%)</strong>
+                <md-progress-bar class="example-margin" [value]="docAuthFailedValue" [bufferValue]="20">
+                </md-progress-bar>
+            </div>
+            <div class="col-sm-3">
+                <div class="text-muted">Unique</div>
+                <strong>24.093 Users (20%)</strong>
+                <md-progress-bar class="example-margin" [value]="docAuthFailedValue" [bufferValue]="20">
+                </md-progress-bar>
+            </div>
+            <div class="col-sm-3">
+                <div class="text-muted">Unique</div>
+                <strong>24.093 Users (20%)</strong>
+                <md-progress-bar class="example-margin" [value]="docAuthFailedValue" [bufferValue]="20">
+                </md-progress-bar>
+            </div>
+        </div>
+    </md-card>
+</div>
