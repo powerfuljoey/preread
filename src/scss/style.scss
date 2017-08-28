@@ -117,16 +117,9 @@
 @import "custom-variables";
 @import "normalize";
 @import "custom";
-@import "custom-theme";
-@import "bootstrap_custom/login";
+// @import "custom-theme";
+// @import "bootstrap_custom/login";
 @import "core/charts";
-// @import '~@swimlane/ngx-datatable/release/index.css';
-// @import '~@swimlane/ngx-datatable/release/themes/material.css';
-// @import '~@swimlane/ngx-datatable/release/assets/icons.css';
-@import '~https://ajax.googleapis.com/ajax/libs/angular_material/0.11.0/angular-material.min.css';
-md-input-container {
-    .mdInput{
-background-color: mat-color($accent);
-    color: black;
-    }
-}
+
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";

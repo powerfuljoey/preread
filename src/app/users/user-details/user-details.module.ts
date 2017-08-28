@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule, MdDialogRef } from '@angular/material';
 import { UserDetailsComponent } from './user-details.component';
 import { UsersComponent } from '../users.component';
@@ -8,7 +7,6 @@ import { UsersComponent } from '../users.component';
 @NgModule({
   imports: [
     CommonModule,
-    NgbModalModule.forRoot(),
     MaterialModule
   ]
   ,

@@ -4,7 +4,6 @@ import { DataSource } from '@angular/cdk';
 import { MdPaginator, MdSort, MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { NotificationService } from '../service/notification.service'
 import { User } from './user';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserService } from './user.service';
@@ -20,7 +19,6 @@ import 'rxjs/add/operator/map';
   templateUrl: './users.component.html',
   providers: [
     UserService,
-    NotificationService,
   ],
   styleUrls: ['./users.component.scss']
 })
@@ -58,7 +56,7 @@ export class UsersComponent implements OnInit {
     let dialogRef = this.dialog.open(UserDetailsComponent, {
       disableClose: true,
       data: {
-        user: null
+        user: new User
       }
     });
   }

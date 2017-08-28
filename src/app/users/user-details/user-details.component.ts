@@ -11,32 +11,81 @@ import { ApiResponse } from '../../model/apiresponse';
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss'],
-  providers:[]
+  providers: [UserService]
 })
 export class UserDetailsComponent implements OnInit {
-  
+
   public user: any;
-  
+
   constructor(
     private dialogRef: MdDialogRef<UserDetailsComponent>,
     @Inject(MD_DIALOG_DATA) private data: any,
-    public _fb: FormBuilder,
+    private userService: UserService
   ) { }
 
+  role: string;
   roles: any[];
-  userForm: FormGroup;
+
+  save() {
+    if (this.user.id === undefined) {
+      this.post();
+    }
+    else {
+      this.put();
+    }
+  }
+
+  put() {
+    console.log('Update',this.user);
+    this.userService.updateUser(this.user)
+      .subscribe(r => {
+        let apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
+        if (apiresp.succeeded) {
+          console.log(apiresp.message);
+          // this.notificationService.success('Update User', 'User has been successfully updated');
+        }
+        else {
+          console.log(apiresp.message);
+          // this.notificationService.error(apiresp.message);
+        }
+      },
+      (error: any) => {
+        console.log(error);
+        // this.notificationService.error(error);
+      },
+      () => {
+        // this.state.modal.close();
+      });
+  }
+
+  post() {
+
+  }
+
+  getRoles() {
+    this.userService.getRoles()
+      .subscribe(r => {
+        let apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
+        if (apiresp.succeeded) {
+          this.roles = JSON.parse(JSON.stringify(apiresp.payload));
+          console.log(this.roles);
+        }
+        else {
+          // this.notificationService.error(apiresp.message);
+        }
+      },
+      (error: any) => {
+        // this.notificationService.error(error);
+      },
+      () => {
+
+      });
+  }
 
   ngOnInit() {
     console.log(this.data.user);
     this.user = this.data.user;
-    // this.userForm = this._fb.group({
-    //   username: ['', Validators.compose([Validators.required])],
-    //   email: ['', Validators.compose([Validators.required])],
-    //   firstname: ['', Validators.compose([Validators.required])],
-    //   lastname: ['', Validators.compose([Validators.required])],
-    //   designation: [],
-    //   role: ['', Validators.compose([Validators.required])]
-    // });
+    this.getRoles();
   }
 
 }
