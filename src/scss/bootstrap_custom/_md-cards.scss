@@ -1,0 +1,68 @@
+md-card {
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .10); // box-shadow: 0 1px 1px 0px rgba(0,0,0,.2), 
+    // 0 2px 2px 0 rgba(0,0,0,.2), 
+    // 0 1px 1px 0 rgba(0,0,0,.2);
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    will-change: box-shadow;
+    display: block;
+    position: relative;
+    // padding: 24px;
+    border-radius: 2px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: white;
+    .footer-card {
+        justify-content: space-between;
+    }
+}
+
+md-card-title {
+    font-size: 10px;
+    font-weight: 400;
+    margin-bottom: 200px;
+    small{
+        font-size: 12px;
+    }
+    .actions {
+        display: flex;
+        float: right;
+        font-size: 16px;
+    }
+}
+
+md-card-footer {
+    margin-top: auto;
+    padding: 0;
+}
+
+md-card-content>:last-child,
+md-card>:last-child {
+    margin-bottom: 0;
+}
+
+md-card-content,
+md-card-header md-card-title,
+md-card-subtitle {
+    font-size: 14px;
+}
+
+.mat-card-title{
+    .widget_title{
+        color: white;
+        position: absolute;
+        top:5px; left:8px;
+        font-size: medium;
+    }
+    .delete_expired{
+        color: white;
+        position: absolute;
+        top:0; right:0;
+    }
+}
+
+.mat-card-content{
+    p{
+        color: white;
+        text-align: center;
+    }
+}
+

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { DataSource } from '@angular/cdk';
-import { MdPaginator, MdSort, MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { MdPaginator, MdSort, MdDialog, MdDialogRef, MdDialogConfig, MdSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { User } from './user';
@@ -37,50 +37,84 @@ export class UsersComponent implements OnInit {
   loadingIndicator: boolean = true;
   userlist: User[];
   user: User = new User;
-  loading: boolean;
-  options = {
-    position: ["bottom", "right"],
-    timeOut: 5000,
-    lastOnBottom: true
-  };
-  state: string;
-  closeResult: string;
 
   constructor(
     private userService: UserService,
-    public dialog: MdDialog) {
+    public dialog: MdDialog,
+    public snackBar: MdSnackBar) {
 
   }
 
   new() {
-    let dialogRef = this.dialog.open(UserDetailsComponent, {
+    const dialogRef = this.dialog.open(UserDetailsComponent, {
       disableClose: true,
       data: {
         user: new User
       }
     });
-  }
-
-  edit(user: any) {
-    let dialogRef = this.dialog.open(UserDetailsComponent, {
-      disableClose: true,
-      data: {
-        user: user
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'save') {
+        this.getAllUser();
       }
     });
   }
 
-  delete() {
-    let dialogRef = this.dialog.open(DialogResultDelete);
+  edit(user: any) {
+    const data: User = new User;
+    data.id = user.id;
+    data.userName = user.userName;
+    data.firstName = user.firstName;
+    data.lastName = user.lastName;
+    data.role = user.role;
+    data.lockoutEnabled = user.lockoutEnabled;
+    data.email = user.email;
+
+    const dialogRef = this.dialog.open(UserDetailsComponent, {
+      disableClose: true,
+      data: {
+        user: data
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result === 'save') {
+        this.getAllUser();
+      }
+    });
+  }
+
+  delete(user: any) {
+    const dialogRef = this.dialog.open(DialogResultDelete);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes') {
+        this.user = user;
+        this.user.status = 3;
+        this.user.role = user.role;
+        console.log('DELETE USER', this.user);
+        this.userService.updateUser(this.user)
+          .subscribe(r => {
+            const apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
+            if (apiresp.succeeded) {
+              this.openSnackBar('User has been deleted', 'Delete User');
+              this.user = new User;
+            }
+            else {
+              this.openSnackBar('apiresp.message', 'Error');
+            }
+          },
+          (error: any) => {
+            this.openSnackBar('apiresp.message', 'Error');
+          },
+          () => {
+            this.getAllUser();
+          });
+      }
     });
   }
 
   getAllUser() {
     this.userService.getAllUsers()
       .subscribe(r => {
-        let apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
+        const apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
         if (apiresp.succeeded) {
           this.userlist = JSON.parse(JSON.stringify(apiresp.payload));
           console.log(this.userlist);
@@ -90,7 +124,6 @@ export class UsersComponent implements OnInit {
         }
       }, (error: any) => {
         if (!error.ok) {
-          this.state = error.status;
           if (error.status == 0) {
             // this.notificationService.error('Connection Refused');
           } else {
@@ -112,6 +145,12 @@ export class UsersComponent implements OnInit {
         this.loadingIndicator = false;
         console.log(this.userDatabase.data.length);
       });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
   }
 
   ngOnInit() {
@@ -150,7 +189,7 @@ export class UserDataSource extends DataSource<any> {
       this._exampleDatabase.dataChange,
       this._sort.mdSortChange,
       this._filterChange,
-      this._paginator
+      this._paginator.page
     ];
 
     return Observable.merge(...displayDataChanges).map(() => {

@@ -1,53 +1,76 @@
+<md-progress-bar color="primary" *ngIf="showLineChartLoader" style="margin:0 auto;" mode="indeterminate"></md-progress-bar>
 <div class="animated fadeIn">
-    <md-card>
-        <md-card-title>
-            <md-progress-bar color="primary" *ngIf="showLineChartLoader" style="margin:0 auto;" mode="indeterminate"></md-progress-bar>
-            <span class="title">
-        Today
+  <md-card>
+    <md-card-title>
+      <span class="title">
+        {{lineChartTitle}}
       </span>
-            <md-button-toggle-group class="actions" value="1">
-                <md-button-toggle value="1" (click)="getLineChart(1)">
-                    Day
-                </md-button-toggle>
-                <md-button-toggle value="2" (click)="getLineChart(2)">
-                    Month
-                </md-button-toggle>
-                <md-button-toggle value="3" (click)="getLineChart(3)">
-                    Year
-                </md-button-toggle>
-            </md-button-toggle-group>
-            <br>
-        </md-card-title>
-        <md-card-content>
-            <div>
-                <canvas baseChart #lineChart="base-chart" [options]="mainChartOptions" [colors]="mainChartColours" [legend]="mainChartLegend" [chartType]="mainChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-            </div>
-        </md-card-content>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="text-muted">Unique</div>
-                <strong>24.093 Users (20%)</strong>
-                <md-progress-bar class="docfailedbar" [value]="docAuthFailedValue" [bufferValue]="20">
-                </md-progress-bar>
-            </div>
-            <div class="col-sm-3">
-                <div class="text-muted">Unique</div>
-                <strong>24.093 Users (20%)</strong>
-                <md-progress-bar class="example-margin" [value]="docAuthFailedValue" [bufferValue]="20">
-                </md-progress-bar>
-            </div>
-            <div class="col-sm-3">
-                <div class="text-muted">Unique</div>
-                <strong>24.093 Users (20%)</strong>
-                <md-progress-bar class="example-margin" [value]="docAuthFailedValue" [bufferValue]="20">
-                </md-progress-bar>
-            </div>
-            <div class="col-sm-3">
-                <div class="text-muted">Unique</div>
-                <strong>24.093 Users (20%)</strong>
-                <md-progress-bar class="example-margin" [value]="docAuthFailedValue" [bufferValue]="20">
-                </md-progress-bar>
-            </div>
+      <md-button-toggle-group class="actions" value="1">
+        <md-button-toggle value="1" (click)="getLineChart(1)">
+          Day
+        </md-button-toggle>
+        <md-button-toggle value="2" (click)="getLineChart(2)">
+          Month
+        </md-button-toggle>
+        <md-button-toggle value="3" (click)="getLineChart(3)">
+          Year
+        </md-button-toggle>
+      </md-button-toggle-group>
+      <br>
+    </md-card-title>
+    <md-card-content>
+      <div>
+        <canvas baseChart #lineChart="base-chart" [options]="mainChartOptions" [colors]="mainChartColours" [legend]="mainChartLegend"
+          [chartType]="mainChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </md-card-content>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="text-muted">Doc Auth Failed</div>
+        <strong>{{docFailedTotal}} ({{docFailedPercentage}}%)</strong>
+        <md-progress-bar class="docfailedbar" [value]="docFailedPercentage" [bufferValue]="20">
+        </md-progress-bar>
+      </div>
+      <div class="col-sm-3">
+        <div class="text-muted">Watchlist Failed</div>
+        <strong>{{watchlistFailedTotal}} ({{watchlistFailedPercentage}}%)</strong>
+        <md-progress-bar class="example-margin" [value]="watchlistFailedPercentage" [bufferValue]="20">
+        </md-progress-bar>
+      </div>
+      <div class="col-sm-3">
+        <div class="text-muted">Clearance Expired</div>
+        <strong>{{expiredTotal}} ({{expiredPercentage}}%)</strong>
+        <md-progress-bar class="example-margin" [value]="expiredPercentage" [bufferValue]="20">
+        </md-progress-bar>
+      </div>
+      <div class="col-sm-3">
+        <div class="text-muted">Clearance Passed</div>
+        <strong>{{passedTotal}} ({{passedPercentage}}%)</strong>
+        <md-progress-bar class="example-margin" [value]="passedPercentage" [bufferValue]="20">
+        </md-progress-bar>
+      </div>
+    </div>
+  </md-card>
+  <div class="row">
+        <div class="col-sm-6">
+          <md-card class="mat-elevation-z2">
+            <md-card-title>
+                A
+            </md-card-title>
+            <md-card-content>
+
+            </md-card-content>
+          </md-card>
         </div>
-    </md-card>
+        <div class="col-sm-6">
+          <md-card class="mat-elevation-z2" >
+            <md-card-title>
+                B
+            </md-card-title>
+            <md-card-content>
+
+            </md-card-content>
+          </md-card>
+        </div>
+      </div>
 </div>

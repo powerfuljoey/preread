@@ -1,0 +1,103 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <md-card class="mat-elevation-z0" [style.background]="'#20a8d8'" style="margin:0px;">
+        <md-card-title>
+          <span class="widget_title">Total</span>
+        </md-card-title>
+        <md-card-content>
+          <h1>
+            <p><strong>{{totalProfile}}</strong></p>
+          </h1>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <md-card class="mat-elevation-z0" [style.background]="'#63c2de'" style="margin:0px;">
+        <md-card-title>
+          <span class="widget_title">Total New</span>
+        </md-card-title>
+        <md-card-content>
+          <h1>
+            <p class="widget"><strong>{{totalNew}}</strong></p>
+          </h1>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <md-card class="mat-elevation-z0" [style.background]="'#f8cb00'" style="margin:0px;">
+        <md-card-title>
+          <span class="widget_title">Total Near Expiry</span>
+        </md-card-title>
+        <md-card-content>
+          <h1>
+            <p><strong>{{totalNearExpiry}}</strong></p>
+          </h1>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <md-card class="mat-elevation-z0" [style.background]="'#f86c6b'" style="margin:0px;">
+        <md-card-title>
+          <span class="widget_title">Total Expired</span>
+          <button md-icon-button class="menu delete_expired">
+                    <md-icon>delete</md-icon>
+                    </button>
+        </md-card-title>
+        <md-card-content>
+          <h1>
+            <p><strong>{{totalExpired}}</strong></p>
+          </h1>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+  <br>
+  <md-progress-bar color="primary" *ngIf="loadingIndicator" style="margin:0 auto;" mode="indeterminate"></md-progress-bar>
+  <md-card>
+    <md-card-title>
+      Profile Lists
+    </md-card-title>
+    <md-card-content>
+      <md-table #table [dataSource]="dataSource" mdSort class="mat-elevation-z1">
+
+        <ng-container cdkColumnDef="photo">
+          <md-header-cell [ngClass]="'photoWidthClass'" *cdkHeaderCellDef> </md-header-cell>
+          <md-cell [ngClass]="'photoWidthClass'" *cdkCellDef="let row">
+            <img style="width:35px" class="img-circle" src="data:image/JPG;base64,{{row.profile.passportPortraitImage}}">
+          </md-cell>
+        </ng-container>
+
+
+        <ng-container cdkColumnDef="name">
+          <md-header-cell *cdkHeaderCellDef md-sort-header> Name </md-header-cell>
+          <md-cell *cdkCellDef="let row"> {{row.profile.firstName}} {{row.profile.lastName}} </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="passportno">
+          <md-header-cell *cdkHeaderCellDef md-sort-header> Passport No. </md-header-cell>
+          <md-cell *cdkCellDef="let row"> {{row.profile.passportNo|uppercase}} </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="nationality">
+          <md-header-cell *cdkHeaderCellDef md-sort-header> Nationality </md-header-cell>
+          <md-cell *cdkCellDef="let row"> {{row.profile.nationality|uppercase}} </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="status">
+          <md-header-cell *cdkHeaderCellDef> Status </md-header-cell>
+          <md-cell *cdkCellDef="let row">
+            <span class="label" [ngClass]="{'label-primary': !row.expired,'label-warning': row.nearExpiry,'label-danger': row.expired}"> 
+                {{row.expired?'EXPIRED':row.nearExpiry?'EXPIRING':'NEW'}} </span>&nbsp;
+          </md-cell>
+        </ng-container>
+
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+
+      </md-table>
+      <md-paginator #paginator [length]="profileDatabase.data.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+      </md-paginator>
+    </md-card-content>
+  </md-card>
+</div>

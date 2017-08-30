@@ -1,11 +1,14 @@
 <div>
+  
   <md-sidenav-container class="md-sidenav-container">
-    <md-toolbar md-is-locked-open="true" color="primary" layout="column">
+      
+    <!-- [style.background]="'#fafafa'" -->
+    <md-toolbar color="primary" md-is-locked-open="true" layout="row">
       <span>
         <button class="menu" md-icon-button (click)="sidenav.toggle()">
       <md-icon>menu</md-icon>
       </button>
-        <span>Pre-Read Admin</span> 
+        <span>Pre-Read Admin</span>
       </span>
 
       <span>
@@ -17,38 +20,39 @@
         <button md-menu-item (click)="logout()">Logout</button>
       </md-menu>
       </span>
-     
+
     </md-toolbar>
-    <md-sidenav mode="side" class="md-sidenav-left" closed #sidenav>
+    <!-- md-greyframe-z2 mat-elevation-z0 -->
+    <md-sidenav mode="side" class="md-sidenav-left " closed #sidenav>
       <md-nav-list>
         <div>
-          <a md-list-item routerLinkActive="active" [routerLink]="['/dashboard']"><i class="fa fa-home  fa-lg"></i><span md-line>Home</span></a>
-        </div>
-      </md-nav-list>
-      <!-- <md-divider></md-divider> -->
-      <md-nav-list>
-        <div>
-          <a md-list-item routerLinkActive="active" [routerLink]="['/users']"><i class="fa fa-database  fa-lg"></i><span md-line>User Maintenance</span></a>
+          <a md-list-item routerLinkActive="active" [routerLink]="['/dashboard']"><md-icon>dashboard</md-icon><span>Dashboard</span>
+            <!-- <span md-line> <i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-home"></i> &nbsp; Home</span> -->
+          </a>
         </div>
       </md-nav-list>
       <md-nav-list>
         <div>
-          <a md-list-item><i class="fa fa-tasks  fa-lg"></i><span md-line>Role</span></a>
+            <a md-list-item routerLinkActive="active" [routerLink]="['/users']"><md-icon>people</md-icon><span>User Maintenance</span></a>
+          <!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item routerLinkActive="active" [routerLink]="['/users']"><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-database"></i>&nbsp; User Maintenance</span></a> -->
         </div>
       </md-nav-list>
       <md-nav-list>
         <div>
-          <a md-list-item><i class="fa fa-users  fa-lg"></i><span md-line>Profile Management</span></a>
+            <a md-list-item routerLinkActive="active" [routerLink]="['/profile']"><md-icon>card_travel</md-icon><span>Profile Management</span></a>
+          <!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item routerLinkActive="active" [routerLink]="['/profile']"><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-users  fa-md"></i>&nbsp; Profile Management</span></a> -->
         </div>
       </md-nav-list>
       <md-nav-list>
         <div>
-          <a md-list-item><i class="fa fa-bar-chart  fa-lg"></i><span md-line>Statistics</span></a>
+            <a md-list-item routerLinkActive="active" [routerLink]="['/statistics']"><md-icon>insert_chart</md-icon><span>Statistics</span></a>
+          <!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-bar-chart  fa-md"></i>&nbsp; Statistics</span></a> -->
         </div>
       </md-nav-list>
       <md-nav-list>
         <div>
-          <a md-list-item><i class="fa fa-gears  fa-lg"></i><span md-line>Settings</span></a>
+            <a md-list-item routerLinkActive="active" [routerLink]="['/settings']"><md-icon>settings</md-icon><span>Settings</span></a>
+          <!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-gears  fa-md"></i>&nbsp; Settings</span></a> -->
         </div>
       </md-nav-list>
     </md-sidenav>
@@ -56,5 +60,5 @@
       <router-outlet></router-outlet>
     </div>
   </md-sidenav-container>
-
 </div>
+<!-- #a7a9ae -->

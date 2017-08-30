@@ -1,8 +1,9 @@
 <div class="animated fadeIn">
+  <md-progress-bar color="primary" *ngIf="loadingIndicator" style="margin:0 auto;" mode="indeterminate"></md-progress-bar>
   <md-card>
     <md-card-title>
       Users
-      <button (click)="new()" md-raised-button class="pull-right">
+      <button color="primary" (click)="new()" md-raised-button class="pull-right">
       <md-icon>add</md-icon>
         Create New User
       </button>
@@ -26,7 +27,7 @@
             <button (click)="edit(row)" md-icon-button class="menu">
         <md-icon>edit</md-icon>
         </button>
-            <button (click)="delete()" md-icon-button class="menu">
+            <button (click)="delete(row)" md-icon-button class="menu">
         <md-icon>delete</md-icon>
         </button>
           </md-cell>
@@ -64,7 +65,7 @@
         <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
 
       </md-table>
-      <md-paginator #paginator [length]="userDatabase.data.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]">
+      <md-paginator #paginator [length]="userDatabase.data.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
       </md-paginator>
     </md-card-content>
   </md-card>

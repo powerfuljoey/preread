@@ -1,6 +1,6 @@
 import { Component, Inject, Injectable, OnInit, Input, Directive, TemplateRef, ViewChild, NgModule } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from '@angular/material';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -20,7 +20,8 @@ export class UserDetailsComponent implements OnInit {
   constructor(
     private dialogRef: MdDialogRef<UserDetailsComponent>,
     @Inject(MD_DIALOG_DATA) private data: any,
-    private userService: UserService
+    private userService: UserService,
+    public snackBar: MdSnackBar
   ) { }
 
   role: string;
@@ -36,22 +37,23 @@ export class UserDetailsComponent implements OnInit {
   }
 
   put() {
-    console.log('Update',this.user);
+    console.log('Update', this.user);
+    this.user.role=this.role;
     this.userService.updateUser(this.user)
       .subscribe(r => {
-        let apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
+        const apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
         if (apiresp.succeeded) {
-          console.log(apiresp.message); 
-          // this.notificationService.success('Update User', 'User has been successfully updated');
+          console.log(apiresp.message);
+          this.openSnackBar('User has been successfully updated', 'Update User');
         }
         else {
           console.log(apiresp.message);
-          // this.notificationService.error(apiresp.message);
+          this.openSnackBar(apiresp.message, 'Error');
         }
       },
       (error: any) => {
         console.log(error);
-        // this.notificationService.error(error);
+        this.openSnackBar(error, 'Error');
       },
       () => {
         // this.state.modal.close();
@@ -59,31 +61,60 @@ export class UserDetailsComponent implements OnInit {
   }
 
   post() {
-
+    console.log('New User');
+    this.user.role=this.role;
+    this.userService.addNewUser(this.user)
+      .subscribe(r => {
+        const apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
+        if (apiresp.succeeded) {
+          console.log(apiresp.message);
+          this.openSnackBar('New User has been successfully added', 'New User');
+        }
+        else {
+          console.log(apiresp.message);
+          this.openSnackBar(apiresp.message, 'Error');
+        }
+      },
+      (error: any) => {
+        console.log(error);
+        this.openSnackBar(error, 'Error');
+      },
+      () => {
+        
+      });
   }
 
   getRoles() {
     this.userService.getRoles()
       .subscribe(r => {
-        let apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
+        const apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
         if (apiresp.succeeded) {
           this.roles = JSON.parse(JSON.stringify(apiresp.payload));
           console.log(this.roles);
         }
         else {
-          // this.notificationService.error(apiresp.message);
+          console.log(apiresp.message);
+          this.openSnackBar(apiresp.message, 'Error');
         }
       },
       (error: any) => {
-        // this.notificationService.error(error);
+        console.log(error);
+        this.openSnackBar(error, 'Error');
       },
       () => {
 
       });
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
+  }
+
   ngOnInit() {
-    console.log(this.data.user);
+    console.log('param', this.data.user);
+    this.role = this.data.user.role !== undefined ? this.data.user.role[0] : '';
     this.user = this.data.user;
     this.getRoles();
   }

@@ -15,19 +15,31 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: '',canActivate: [AuthGuard],
+    path: '', canActivate: [AuthGuard],
     component: FullLayoutComponent,
     data: {
       title: 'Home'
     },
     children: [
       {
-        path: 'dashboard',canActivate: [AuthGuard],
+        path: 'dashboard', canActivate: [AuthGuard],
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
       {
         path: 'users', canActivate: [AuthGuard],
         loadChildren: './users/users.module#UsersModule'
+      },
+      {
+        path: 'profile', canActivate: [AuthGuard],
+        loadChildren: './profile/profile.module#ProfileModule'
+      },
+      {
+        path: 'settings', canActivate: [AuthGuard],
+        loadChildren: './settings/settings.module#SettingsModule'
+      },
+      {
+        path: 'statistics', canActivate: [AuthGuard],
+        loadChildren: './statistics/statistics.module#StatisticsModule'
       }
     ]
   },

@@ -112,14 +112,15 @@
 //         transform: translateX(-50%) scale(0, 1);
 //     }
 // }
-// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "custom-theme";
 @import "bootstrap-variables";
 @import "custom-variables";
 @import "normalize";
 @import "custom";
-// @import "custom-theme";
-// @import "bootstrap_custom/login";
+@import "bootstrap_custom/md-cards";
 @import "core/charts";
-
+@import "core/animate";
+@import "core/layout";
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";

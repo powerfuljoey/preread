@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NotificationBarModule } from 'angular2-notification-bar';
 import { MaterialModule } from '@angular/material';
 
 import { CdkTableModule } from '@angular/cdk';
@@ -16,18 +15,17 @@ import { UsersRoutingModule } from './users-routing.module';
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
-    NotificationBarModule,
     MaterialModule,
     CdkTableModule
   ],
   exports: [
-    DialogResultDelete,UserDetailsComponent
+    DialogResultDelete, UserDetailsComponent
   ],
   declarations: [
-    UsersComponent,UserDetailsComponent,
+    UsersComponent, UserDetailsComponent,
     DialogResultDelete
   ],
-  entryComponents: [DialogResultDelete,UserDetailsComponent],
+  entryComponents: [DialogResultDelete, UserDetailsComponent],
   providers: [
 
   ]

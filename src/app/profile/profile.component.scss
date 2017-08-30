@@ -1,0 +1,10 @@
+// @include media-breakpoint-up(sm) {
+    .card-columns {
+  
+      &.cols-4 {
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        column-count: 4;
+      }
+    }
+//   }

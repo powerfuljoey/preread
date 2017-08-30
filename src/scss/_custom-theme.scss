@@ -1,19 +1,39 @@
-// @import '~@angular/material/theming';
-
-// @include mat-core();
-
-// $custom-theme-primary: mat-palette($mat-grey, 000, 500, 900);
-// $custom-theme-accent: mat-palette($mat-orange, A200, A100, A400);
-// $custom-theme-warn: mat-palette($mat-red);
-
-// $custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
-
-// @include angular-material-theme($custom-theme);
-
 @import '~@angular/material/theming';
 @include mat-core();
-$primary: mat-palette($mat-indigo, 900);
-$accent:  mat-palette($mat-light-blue, 600, 100, 800);
-$warn:    mat-palette($mat-red, 600);
-$theme: mat-light-theme($primary, $accent, $warn);
-@include angular-material-theme($theme);
+$custom-theme-primary: mat-palette($mat-blue, 900, 100, 000);
+$custom-theme-accent: mat-palette($mat-orange, A200, A100, A400);
+$custom-theme-warn: mat-palette($mat-red);
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+// @mixin mat-sidenav-theme($custom-theme) {
+//     $primary: map-get($custom-theme, primary);
+//     $accent: map-get($custom-theme, accent);
+//     $warn: map-get($custom-theme, warn);
+//     $background: map-get($custom-theme, background);
+//     $foreground: map-get($custom-theme, foreground);
+//     // We use invert() here to have the darken the background color expected to be used. If the
+//     // background is light, we use a dark backdrop. If the background is dark, 
+//     // we use a light backdrop.
+//     $sidenav-backdrop-color: invert(mat-color($background, card, 0.6)) !default;
+//     $sidenav-background-color: mat-color($background, dialog) !default;
+//     $sidenav-container-background-color: mat-color($background, background) !default;
+//     $sidenav-push-background-color: mat-color($background, dialog) !default;
+//     .mat-sidenav-container {
+//         // background-color: $sidenav-container-background-color;
+//         background-color: #e9ecf3;
+//         color: mat-color($foreground, text);
+//     }
+//     &.mat-sidenav,
+//     .mat-sidenav {
+//         background-color: $sidenav-background-color;
+//         // background-color: rgba(0, 0, 0, .87);
+//         color: mat-color($foreground, text);
+//         &.mat-sidenav-push {
+//             background-color: $sidenav-push-background-color;
+//         }
+//     }
+//     .mat-sidenav-backdrop.mat-sidenav-shown {
+//         background-color: $sidenav-backdrop-color;
+//     }
+// }
+
+// @include angular-material-theme($custom-theme);

@@ -1,0 +1,66 @@
+md-toolbar {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .36);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    position: absolute;
+    md-toolbar-row {
+        justify-content: space-between;
+        span {
+            font-size: 18px;
+        }
+    }
+    
+}
+
+md-sidenav {
+    // position: absolute;
+    // background-color: #2b303b;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .15);
+    display: flex;
+    overflow: visible;
+    width: 250px;
+    i {
+        display: flex;
+        float: left;
+    }
+    span{
+        margin-left: 20px;
+    }
+    &.mat-sidenav-closed {
+        transform: translate3d(0, 0, 0) !important;
+        visibility: visible !important;
+        min-width: 54px !important;
+        width: 54px !important;
+        overflow-x: hidden;
+        &~.mat-sidenav-content {
+            margin-left: 54px !important;
+        }
+        span{
+            visibility: hidden;
+        }
+    }
+}
+
+md-sidenav-container {
+    height: 100vh;
+    // padding-top: 9vh;
+}
+
+md-card{
+    margin-bottom: 20px;
+}
+
+
+.mat-container-default-padd {
+    margin: 10px;
+    padding-top: 9vh;
+}
+
+// #top {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     z-index: 999;
+//     width: 100%;
+//     height: 23px;
+//   }

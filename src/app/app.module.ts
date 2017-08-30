@@ -26,7 +26,7 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
   declarations: [
     AppComponent,
     FullLayoutComponent,
-    SimpleLayoutComponent
+    SimpleLayoutComponent,
   ],
   imports: [
     BrowserModule,
