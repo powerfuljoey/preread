@@ -4,30 +4,48 @@
       Settings <small class="text-muted">Show and change application settings.</small>
     </md-card-title>
     <md-card-content>
+
       <md-tab-group>
         <md-tab label="General">
           <div>
-            <h4>Change/Reset User Password</h4>
-            <p>
-              <md-input-container>
-                <input required mdInput placeholder="User name">
+            <div class="col-sm-6">
+              <h4>Change/Reset User Password</h4>
+              <md-checkbox [checked]="isAdmin">Is Admin?</md-checkbox>
+              <md-input-container *ngIf="true">
+                <input  required mdInput placeholder="User name">
               </md-input-container>
-            </p>
-            <p>
-              <md-input-container>
-                <input required mdInput placeholder="Old Password">
-              </md-input-container>
-            </p>
-            <p>
-              <md-input-container>
-                <input required mdInput placeholder="New Password">
-              </md-input-container>
-            </p>
-            <p>
-              <md-input-container>
-                <input required mdInput placeholder="Old Password">
-              </md-input-container>
-            </p>
+              <p>
+                <span>
+                    
+                </span>
+
+              </p>
+              <p>
+                <md-input-container>
+                  <input type="password" required mdInput placeholder="Current Password">
+                </md-input-container>
+              </p>
+              <p>
+                <md-input-container>
+                  <input type="password" required mdInput placeholder="New Password">
+                </md-input-container>
+              </p>
+              <p>
+                <md-input-container>
+                  <input type="password" required mdInput placeholder="Confirm Password">
+                </md-input-container>
+              </p>
+              <p><button class="pull-right" md-raised-button>Update Password</button>
+              </p>
+              <br>
+              <br>
+            </div>
+            <div class="col-sm-6">
+
+            </div>
+          </div>
+          <div>
+
           </div>
         </md-tab>
         <md-tab label="User Management">
