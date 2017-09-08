@@ -7,52 +7,47 @@
 
       <md-tab-group>
         <md-tab label="General">
-          <div>
-            <div class="col-sm-6">
-              <h4>Change/Reset User Password</h4>
-              <md-checkbox [checked]="isAdmin">Is Admin?</md-checkbox>
-              <md-input-container *ngIf="true">
-                <input  required mdInput placeholder="User name">
-              </md-input-container>
-              <p>
-                <span>
-                    
-                </span>
 
-              </p>
+        </md-tab>
+        <!-- <md-tab label="User Management">
+          <div class="col-sm-6">
+            <h4>Change/Reset User Password</h4>
+            <md-input-container>
+              <input  mdInput placeholder="User name">
+              <md-icon mdSuffix>check_circle</md-icon>
+            </md-input-container>
+            <form [formGroup]="changePasswordForm">
               <p>
                 <md-input-container>
-                  <input type="password" required mdInput placeholder="Current Password">
+                  <input formControlName="newpassword" type="password" mdInput placeholder="New Password">
                 </md-input-container>
               </p>
               <p>
-                <md-input-container>
-                  <input type="password" required mdInput placeholder="New Password">
+                <md-input-container autocomplete="false">
+                  <input formControlName="confirmpassword" type="password" mdInput placeholder="Confirm Password">
+                  <md-error *ngIf="changePasswordForm.controls.confirmpassword.errors?.equalTo">
+                      Password does not match
+                  </md-error>
                 </md-input-container>
               </p>
               <p>
-                <md-input-container>
-                  <input type="password" required mdInput placeholder="Confirm Password">
-                </md-input-container>
+                <button [disabled]="changePasswordForm.invalid" class="pull-right" md-raised-button>Update Password</button>
               </p>
-              <p><button class="pull-right" md-raised-button>Update Password</button>
-              </p>
-              <br>
-              <br>
-            </div>
-            <div class="col-sm-6">
+            </form>
 
-            </div>
+            <br>
+            <br>
+          </div>
+          <div class="col-sm-6">
+
           </div>
           <div>
 
           </div>
-        </md-tab>
-        <md-tab label="User Management">
-
-        </md-tab>
-        <md-tab label="Security">Content 2</md-tab>
+        </md-tab> -->
+        <md-tab label="Security">Security Settings</md-tab>
       </md-tab-group>
     </md-card-content>
   </md-card>
 </div>
+

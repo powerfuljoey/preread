@@ -1,15 +1,13 @@
 md-toolbar {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .36);
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    display: flex;
-    position: absolute;
+    font-family: Roboto, "Helvetica Neue", sans-serif; // display: flex;
+    // position: absolute;
     md-toolbar-row {
         justify-content: space-between;
         span {
             font-size: 18px;
         }
     }
-    
 }
 
 md-sidenav {
@@ -23,7 +21,7 @@ md-sidenav {
         display: flex;
         float: left;
     }
-    span{
+    span {
         margin-left: 20px;
     }
     &.mat-sidenav-closed {
@@ -35,31 +33,30 @@ md-sidenav {
         &~.mat-sidenav-content {
             margin-left: 54px !important;
         }
-        span{
+        span {
             visibility: hidden;
         }
     }
 }
 
 md-sidenav-container {
-    height: 100vh;
-    // padding-top: 9vh;
+    height: 100vh; // padding-top: 9vh;
 }
 
-md-card{
+md-card {
     margin-bottom: 20px;
 }
 
-
 .mat-container-default-padd {
+    display: flex;
     margin: 10px;
     padding-top: 9vh;
 }
 
-md-input-container
-{
-    width: 100%;    
+md-input-container {
+    width: 100%;
 }
+
 // #top {
 //     position: fixed;
 //     top: 0;

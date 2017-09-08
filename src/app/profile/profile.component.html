@@ -1,62 +1,62 @@
 <div class="animated fadeIn">
   <div class="row">
-    <div class="col-sm-6 col-lg-3">
-      <md-card class="mat-elevation-z0" [style.background]="'#20a8d8'" style="margin:0px;">
+    <div class="col-sm-3">
+      <md-card class="mat-elevation-z0 " [style.background]="'#20a8d8'">
         <md-card-title>
           <span class="widget_title">Total</span>
         </md-card-title>
-        <md-card-content>
+        <md-card-content >
           <h1>
-            <p><strong>{{totalProfile}}</strong></p>
+            <p class="widget_content"><strong>{{totalProfile}}</strong></p>
           </h1>
         </md-card-content>
       </md-card>
     </div>
-    <div class="col-sm-6 col-lg-3">
-      <md-card class="mat-elevation-z0" [style.background]="'#63c2de'" style="margin:0px;">
+    <div class="col-sm-3">
+      <md-card class="mat-elevation-z0" [style.background]="'#63c2de'">
         <md-card-title>
           <span class="widget_title">Total New</span>
         </md-card-title>
         <md-card-content>
           <h1>
-            <p class="widget"><strong>{{totalNew}}</strong></p>
+            <p class="widget_content"><strong>{{totalNew}}</strong></p>
           </h1>
         </md-card-content>
       </md-card>
     </div>
-    <div class="col-sm-6 col-lg-3">
-      <md-card class="mat-elevation-z0" [style.background]="'#f8cb00'" style="margin:0px;">
+    <div class="col-sm-3">
+      <md-card class="mat-elevation-z0" [style.background]="'#f8cb00'">
         <md-card-title>
           <span class="widget_title">Total Near Expiry</span>
         </md-card-title>
         <md-card-content>
           <h1>
-            <p><strong>{{totalNearExpiry}}</strong></p>
+            <p class="widget_content"><strong>{{totalNearExpiry}}</strong></p>
           </h1>
         </md-card-content>
       </md-card>
     </div>
-    <div class="col-sm-6 col-lg-3">
-      <md-card class="mat-elevation-z0" [style.background]="'#f86c6b'" style="margin:0px;">
+    <div class="col-sm-3">
+      <md-card class="mat-elevation-z0" [style.background]="'#f86c6b'">
         <md-card-title>
           <span class="widget_title">Total Expired</span>
-          <button md-icon-button class="menu delete_expired">
+          <!-- <button md-icon-button class="menu delete_expired">
                     <md-icon>delete</md-icon>
-                    </button>
+                    </button> -->
         </md-card-title>
         <md-card-content>
           <h1>
-            <p><strong>{{totalExpired}}</strong></p>
+            <p class="widget_content"><strong>{{totalExpired}}</strong></p>
           </h1>
         </md-card-content>
       </md-card>
     </div>
   </div>
-  <br>
   <md-progress-bar color="primary" *ngIf="loadingIndicator" style="margin:0 auto;" mode="indeterminate"></md-progress-bar>
   <md-card>
     <md-card-title>
       Profile Lists
+      <small class="text-muted">Show and manage profiles.</small>
     </md-card-title>
     <md-card-content>
       <md-table #table [dataSource]="dataSource" mdSort class="mat-elevation-z1">
@@ -87,8 +87,8 @@
         <ng-container cdkColumnDef="status">
           <md-header-cell *cdkHeaderCellDef> Status </md-header-cell>
           <md-cell *cdkCellDef="let row">
-            <span class="label" [ngClass]="{'label-primary': !row.expired,'label-warning': row.nearExpiry,'label-danger': row.expired}"> 
-                {{row.expired?'EXPIRED':row.nearExpiry?'EXPIRING':'NEW'}} </span>&nbsp;
+            <span class="label" [ngClass]="{'label-primary': row.movementStatus===1,'label-warning': row.movementStatus===7,'label-danger': row.movementStatus===8}"> 
+                {{row.movementStatus===8?'EXPIRED':row.movementStatus===7?'EXPIRING':'NEW'}} </span>&nbsp;
           </md-cell>
         </ng-container>
 

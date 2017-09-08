@@ -3,7 +3,8 @@
   <md-card>
     <md-card-title>
       Users
-      <button color="primary" (click)="new()" md-raised-button class="pull-right">
+      <small class="text-muted">Show and manage users.</small>
+      <button  (click)="new()" md-raised-button class="pull-right">
       <md-icon>add</md-icon>
         Create New User
       </button>
@@ -27,7 +28,7 @@
             <button (click)="edit(row)" md-icon-button class="menu">
         <md-icon>edit</md-icon>
         </button>
-            <button (click)="delete(row)" md-icon-button class="menu">
+            <button [disabled]="row.userName==='Administrator'" (click)="delete(row)" md-icon-button class="menu">
         <md-icon>delete</md-icon>
         </button>
           </md-cell>

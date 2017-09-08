@@ -27,6 +27,12 @@ export class UserService {
       .map(resp => resp.json()).catch(handleError);
   }
 
+  getUser(param: string): Observable<User[]> {
+    let options = new RequestOptions({ headers: this.getHeaders() });
+    return this.http.get(`${this.baseUrl}/api/user/${param}`, options)
+      .map(resp => resp.json()).catch(handleError);
+  }
+
   getPagedUsers(page: number) {
     let options = new RequestOptions({ headers: this.getHeaders() });
     return this.http.get(`${this.baseUrl}/api/user/${page}/10`, options)
@@ -50,6 +56,19 @@ export class UserService {
   searchUser(name: string) {
     let options = new RequestOptions({ headers: this.putHeader() });
     return this.http.get(`${this.baseUrl}/api/user/search/${name}`, options)
+      .map(resp => resp.json()).catch(handleError);
+  }
+
+  resetPassword(id: string) {
+    let options = new RequestOptions({ headers: this.putHeader() });
+    console.log(options);
+    return this.http.post(`${this.baseUrl}/api/user/reset/${id}`,'', options)
+      .map(resp => resp.json()).catch(handleError);
+  }
+
+  changePassword(currentpassword: string,newpassword:string) {
+    let options = new RequestOptions({ headers: this.putHeader() });
+    return this.http.post(`${this.baseUrl}/api/user/change/${currentpassword}/${newpassword}`,'', options)
       .map(resp => resp.json()).catch(handleError);
   }
 

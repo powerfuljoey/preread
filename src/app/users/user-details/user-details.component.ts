@@ -16,16 +16,46 @@ import { ApiResponse } from '../../model/apiresponse';
 export class UserDetailsComponent implements OnInit {
 
   public user: any;
+  public role: string;
+  public roles: any[];
+  public isAdmin: boolean = true;
+  public userForm: FormGroup;
 
   constructor(
     private dialogRef: MdDialogRef<UserDetailsComponent>,
     @Inject(MD_DIALOG_DATA) private data: any,
     private userService: UserService,
-    public snackBar: MdSnackBar
-  ) { }
+    public snackBar: MdSnackBar,
+    public _fb: FormBuilder,
+  ) {
 
-  role: string;
-  roles: any[];
+    this.role = this.data.user.role !== undefined ? this.data.user.role[0] : '';
+    this.user = this.data.user;
+    this.isAdmin = this.user.userName === 'Administrator' ? true : false;
+    this.getRoles();
+
+    const firstName = new FormControl('', Validators.required);
+    const lastName = new FormControl('', Validators.required);
+    const userName = new FormControl({ value: '', disabled: this.isAdmin }, Validators.required);
+    const role = new FormControl({ value: '', disabled: this.isAdmin }, Validators.required);
+    const email = new FormControl('', []);
+    const lockoutenabled = new FormControl('', []);
+
+    this.userForm = _fb.group({
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+      role: role,
+      email: email,
+      lockoutenabled: lockoutenabled
+    });
+
+  }
+
+
+  cancel() {
+    this.dialogRef.close('cancel');
+  }
 
   save() {
     if (this.user.id === undefined) {
@@ -38,7 +68,7 @@ export class UserDetailsComponent implements OnInit {
 
   put() {
     console.log('Update', this.user);
-    this.user.role=this.role;
+    this.user.role = this.role;
     this.userService.updateUser(this.user)
       .subscribe(r => {
         const apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
@@ -62,7 +92,7 @@ export class UserDetailsComponent implements OnInit {
 
   post() {
     console.log('New User');
-    this.user.role=this.role;
+    this.user.role = this.role;
     this.userService.addNewUser(this.user)
       .subscribe(r => {
         const apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
@@ -71,7 +101,7 @@ export class UserDetailsComponent implements OnInit {
           this.openSnackBar('New User has been successfully added', 'New User');
         }
         else {
-          console.log(apiresp.message);
+          console.log('Error', apiresp.message);
           this.openSnackBar(apiresp.message, 'Error');
         }
       },
@@ -80,7 +110,29 @@ export class UserDetailsComponent implements OnInit {
         this.openSnackBar(error, 'Error');
       },
       () => {
-        
+
+      });
+  }
+
+  resetPassword() {
+    this.userService.resetPassword(this.user.id)
+      .subscribe(r => {
+        const apiresp: ApiResponse = JSON.parse(JSON.stringify(r));
+        if (apiresp.succeeded) {
+          console.log(apiresp.message);
+          this.openSnackBar('Password has been reset', 'Reset Password');
+        }
+        else {
+          console.log('Error', apiresp.message);
+          this.openSnackBar(apiresp.message, 'Error');
+        }
+      },
+      (error: any) => {
+        console.log(error);
+        this.openSnackBar(error, 'Error');
+      },
+      () => {
+
       });
   }
 
@@ -113,10 +165,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('param', this.data.user);
-    this.role = this.data.user.role !== undefined ? this.data.user.role[0] : '';
-    this.user = this.data.user;
-    this.getRoles();
+
   }
 
 }

@@ -232,10 +232,10 @@ export class UserDataSource extends DataSource<any> {
 @Component({
   selector: 'dialog-delete',
   template: `<h1 md-dialog-title>Delete</h1>
-<div md-dialog-content>Delete user?</div>
-<div md-dialog-actions>
-  <button md-button md-dialog-close="Yes">Yes</button>
-  <button md-button md-dialog-close="No">No</button>
+<div md-dialog-content style="width:500px;">Are you sure you want to delete?</div>
+<div md-dialog-actions class="pull-right">
+  <button md-raised-button md-dialog-close="Yes">Yes</button>
+  <button md-raised-button md-dialog-close="No">No</button>
 </div>`,
 })
 export class DialogResultDelete {

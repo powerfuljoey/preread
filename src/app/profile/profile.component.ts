@@ -108,7 +108,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     console.log('countNew');
     if (this.movementlist !== undefined) {
       if (this.movementlist.length > 0) {
-        this.totalNew = this.movementlist.filter(f => f.expired === false).length
+        this.totalNew = this.movementlist.filter(f => f.movementStatus === 1).length
       }
     }
   }
@@ -117,7 +117,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     console.log('countNearExpiry');
     if (this.movementlist !== undefined) {
       if (this.movementlist.length > 0) {
-        this.totalNearExpiry = this.movementlist.filter(f => f.nearExpiry === true).length
+        this.totalNearExpiry = this.movementlist.filter(f => f.movementStatus === 7).length
       }
     }
   }
@@ -126,7 +126,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     console.log('countExpired');
     if (this.movementlist !== undefined) {
       if (this.movementlist.length > 0) {
-        this.totalExpired = this.movementlist.filter(f => f.expired === true).length
+        this.totalExpired = this.movementlist.filter(f => f.movementStatus === 8).length
       }
     }
   }

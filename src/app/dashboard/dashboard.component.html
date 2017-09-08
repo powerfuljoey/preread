@@ -3,7 +3,7 @@
   <md-card>
     <md-card-title>
       <span class="title">
-        {{lineChartTitle}}
+        Movement Line Chart - {{lineChartTitle}}
       </span>
       <md-button-toggle-group class="actions" value="1">
         <md-button-toggle value="1" (click)="getLineChart(1)">
@@ -21,7 +21,7 @@
     <md-card-content>
       <div>
         <canvas baseChart #lineChart="base-chart" [options]="mainChartOptions" [colors]="mainChartColours" [legend]="mainChartLegend"
-          [chartType]="mainChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          [chartType]="mainChartType" ></canvas>
       </div>
     </md-card-content>
     <div class="row">
@@ -74,3 +74,5 @@
         </div>
       </div>
 </div>
+
+<!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" -->
