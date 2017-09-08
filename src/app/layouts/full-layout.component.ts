@@ -24,7 +24,6 @@ export class FullLayoutComponent implements OnInit {
   public status: { isopen: boolean } = { isopen: false };
   public username: string;
   public role: string;
-
   constructor(
     private authService: AuthService,
     private router: Router,

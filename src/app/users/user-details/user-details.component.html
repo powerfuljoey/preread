@@ -41,7 +41,7 @@
     </div>
     <div md-dialog-actions class="pull-right">
       <button md-raised-button md-dialog-close="cancel" (click)="cancel()">Cancel</button>
-      <button md-raised-button md-dialog-close="save" (click)="save()">Save</button>
+      <button md-raised-button md-dialog-close="save" [disabled]="userForm.invalid" (click)="save()">Save</button>
     </div>
     <div md-dialog-actions class="pull-left">
         <button *ngIf="user.id!==undefined" md-raised-button md-dialog-close="save" (click)="resetPassword()">Reset Password</button>

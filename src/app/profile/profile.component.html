@@ -96,7 +96,7 @@
         <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
 
       </md-table>
-      <md-paginator #paginator [length]="profileDatabase.data.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+      <md-paginator #paginator [length]="profileDatabase.data.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]">
       </md-paginator>
     </md-card-content>
   </md-card>

@@ -1,7 +1,11 @@
 md-toolbar {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .36);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.21);
     font-family: Roboto, "Helvetica Neue", sans-serif; // display: flex;
-    // position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
     md-toolbar-row {
         justify-content: space-between;
         span {
@@ -10,19 +14,24 @@ md-toolbar {
     }
 }
 
+.mat-toolbar{
+    background-color: rgb(255, 255, 255);
+}
+
 md-sidenav {
+    font-size: small;
     // position: absolute;
     // background-color: #2b303b;
     box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .15);
-    display: flex;
-    overflow: visible;
-    width: 250px;
+    display: flex; // overflow: visible;
+    width: 220px;
     i {
         display: flex;
         float: left;
     }
     span {
         margin-left: 20px;
+        font-size: 14px;
     }
     &.mat-sidenav-closed {
         transform: translate3d(0, 0, 0) !important;
@@ -40,28 +49,26 @@ md-sidenav {
 }
 
 md-sidenav-container {
+    // padding: 20px;
+    // height: calc(100% - 64px);
+    overflow: auto;
     height: 100vh; // padding-top: 9vh;
+    .main {
+        margin: 15px 10px 10px 10px;
+    }
+    .app-content {
+        background: rgb(232, 230, 230);
+        // padding: 20px;
+        padding-top: 60px;
+        height: 100%;
+        overflow: auto;
+    }
 }
 
 md-card {
     margin-bottom: 20px;
 }
 
-.mat-container-default-padd {
-    display: flex;
-    margin: 10px;
-    padding-top: 9vh;
-}
-
 md-input-container {
     width: 100%;
 }
-
-// #top {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     z-index: 999;
-//     width: 100%;
-//     height: 23px;
-//   }

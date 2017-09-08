@@ -3,7 +3,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 
-import { CdkTableModule } from '@angular/cdk';
+// import { CdkTableModule } from '@angular/cdk';
+import { CdkTableModule } from '@angular/cdk/table'
 
 import { UsersComponent, DialogResultDelete } from './users.component';
 import { UserDetailsComponent } from './user-details/user-details.component';

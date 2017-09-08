@@ -1,33 +1,10 @@
-<md-sidenav-container class="md-sidenav-container">
+<md-sidenav-container>
 
-  <!-- [style.background]="'#fafafa'" -->
-  <md-toolbar color="primary" md-is-locked-open="true" layout="row">
-    <span>
-        <button class="menu" md-icon-button (click)="sidenav.toggle()">
-      <md-icon>menu</md-icon>
-      </button>
-        <span>Pre-Read Admin</span>
-    </span>
-
-    <span>
-       {{username}}
-        <button class="menu" md-icon-button [md-menu-trigger-for]="menu">
-        <md-icon>account_box</md-icon>
-      </button>
-       <md-menu md-position-mode="target-right bottom" x-position="before" #menu="mdMenu">
-        <button md-menu-item (click)="changePassword()" >Change password</button>
-        <button md-menu-item (click)="logout()">Sign out</button>
-      </md-menu>
-      </span>
-
-  </md-toolbar>
-  <!-- md-greyframe-z2 mat-elevation-z0 -->
-  <md-sidenav mode="side" class="md-sidenav-left " closed #sidenav>
+  <md-sidenav #sidenav mode="side" class="app-sidenav" opened>
     <md-nav-list>
       <div>
         <a md-list-item routerLinkActive="active" [routerLink]="['/dashboard']">
           <md-icon>dashboard</md-icon><span>Dashboard</span>
-          <!-- <span md-line> <i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-home"></i> &nbsp; Home</span> -->
         </a>
       </div>
     </md-nav-list>
@@ -35,34 +12,124 @@
       <div>
         <a md-list-item routerLinkActive="active" [routerLink]="['/users']">
           <md-icon>people</md-icon><span>User Maintenance</span></a>
-        <!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item routerLinkActive="active" [routerLink]="['/users']"><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-database"></i>&nbsp; User Maintenance</span></a> -->
       </div>
     </md-nav-list>
     <md-nav-list>
       <div>
         <a md-list-item routerLinkActive="active" [routerLink]="['/profile']">
           <md-icon>card_travel</md-icon><span>Profile Management</span></a>
-        <!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item routerLinkActive="active" [routerLink]="['/profile']"><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-users  fa-md"></i>&nbsp; Profile Management</span></a> -->
       </div>
     </md-nav-list>
     <md-nav-list>
       <div>
         <a md-list-item routerLinkActive="active" [routerLink]="['/statistics']">
           <md-icon>insert_chart</md-icon><span>Statistics</span></a>
-        <!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-bar-chart  fa-md"></i>&nbsp; Statistics</span></a> -->
       </div>
     </md-nav-list>
     <md-nav-list>
       <div>
         <a md-list-item routerLinkActive="active" [routerLink]="['/settings']">
           <md-icon>settings</md-icon><span>Settings</span></a>
-        <!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-gears  fa-md"></i>&nbsp; Settings</span></a> -->
       </div>
     </md-nav-list>
   </md-sidenav>
-  <div class="main">
-    <router-outlet></router-outlet>
+
+  <md-toolbar>
+    <span>
+              <button class="menu" md-icon-button (click)="sidenav.toggle()">
+            <md-icon>menu</md-icon>
+            </button>
+              <span>Pre-Read Admin</span>
+    </span>
+
+    <span>
+             {{username}}
+              <button class="menu" md-icon-button [md-menu-trigger-for]="menu">
+              <md-icon>account_box</md-icon>
+            </button>
+             <md-menu md-position-mode="target-right bottom" x-position="before" #menu="mdMenu">
+              <button md-menu-item (click)="changePassword()" >Change password</button>
+              <button md-menu-item (click)="logout()">Sign out</button>
+            </md-menu>
+            </span>
+  </md-toolbar>
+
+  <div class="app-content">
+      <div class="main">
+          <router-outlet></router-outlet>
+        </div>
   </div>
 
 </md-sidenav-container>
+
+
+
+<!-- <md-toolbar color="primary" layout="row">
+    <span>
+              <button class="menu" md-icon-button (click)="sidenav.toggle()">
+            <md-icon>menu</md-icon>
+            </button>
+              <span>Pre-Read Admin</span>
+    </span>
+
+    <span>
+             {{username}}
+              <button class="menu" md-icon-button [md-menu-trigger-for]="menu">
+              <md-icon>account_box</md-icon>
+            </button>
+             <md-menu md-position-mode="target-right bottom" x-position="before" #menu="mdMenu">
+              <button md-menu-item (click)="changePassword()" >Change password</button>
+              <button md-menu-item (click)="logout()">Sign out</button>
+            </md-menu>
+            </span>
+
+  </md-toolbar>
+  <md-sidenav-container fullscreen class="md-sidenav-container">
+
+    <md-sidenav mode="side" class="md-sidenav-left " closed #sidenav>
+      <md-nav-list>
+        <div>
+          <a md-list-item routerLinkActive="active" [routerLink]="['/dashboard']">
+            <md-icon>dashboard</md-icon><span>Dashboard</span>
+          </a>
+        </div>
+      </md-nav-list>
+      <md-nav-list>
+        <div>
+          <a md-list-item routerLinkActive="active" [routerLink]="['/users']">
+            <md-icon>people</md-icon><span>User Maintenance</span></a>
+        </div>
+      </md-nav-list>
+      <md-nav-list>
+        <div>
+          <a md-list-item routerLinkActive="active" [routerLink]="['/profile']">
+            <md-icon>card_travel</md-icon><span>Profile Management</span></a>
+        </div>
+      </md-nav-list>
+      <md-nav-list>
+        <div>
+          <a md-list-item routerLinkActive="active" [routerLink]="['/statistics']">
+            <md-icon>insert_chart</md-icon><span>Statistics</span></a>
+        </div>
+      </md-nav-list>
+      <md-nav-list>
+        <div>
+          <a md-list-item routerLinkActive="active" [routerLink]="['/settings']">
+            <md-icon>settings</md-icon><span>Settings</span></a>
+        </div>
+      </md-nav-list>
+    </md-sidenav>
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+
+  </md-sidenav-container> -->
+
 <!-- #a7a9ae -->
+<!-- [style.background]="'#fafafa'" -->
+<!-- md-greyframe-z2 mat-elevation-z0 -->
+<!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-gears  fa-md"></i>&nbsp; Settings</span></a> -->
+<!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item routerLinkActive="active" [routerLink]="['/users']"><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-database"></i>&nbsp; User Maintenance</span></a> -->
+<!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item routerLinkActive="active" [routerLink]="['/profile']"><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-users  fa-md"></i>&nbsp; Profile Management</span></a> -->
+<!-- <a [style.color]="'rgba(0, 0, 0, .87)'" md-list-item><span md-line><i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-bar-chart  fa-md"></i>&nbsp; Statistics</span></a> -->
+<!-- <span md-line> <i [style.color]="'rgba(0, 0, 0, .87)'" class="fa fa-home"></i> &nbsp; Home</span> -->

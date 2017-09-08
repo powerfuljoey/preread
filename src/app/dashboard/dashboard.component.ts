@@ -174,11 +174,12 @@ export class DashboardComponent implements OnInit, OnChanges {
 
           const total = this.docFailedTotal + this.watchlistFailedTotal + this.expiredTotal + this.passedTotal;
 
-          this.docFailedPercentage = (this.docFailedTotal / total) * 100;
-          this.watchlistFailedPercentage = (this.watchlistFailedTotal / total) * 100;
-          this.expiredPercentage = (this.expiredTotal / total) * 100;
-          this.passedPercentage = (this.passedTotal / total) * 100;
+          this.docFailedPercentage = isNaN((this.docFailedTotal / total) * 100) ? 0 : (this.docFailedTotal / total) * 100;
+          this.watchlistFailedPercentage = isNaN((this.watchlistFailedTotal / total) * 100) ? 0 : (this.watchlistFailedTotal) / total;
+          this.expiredPercentage = isNaN((this.expiredTotal / total) * 100) ? 0 : (this.expiredTotal / total) * 100;
+          this.passedPercentage = isNaN((this.passedTotal / total) * 100) ? 0 : (this.passedTotal / total) * 100;
 
+          console.log(this.docFailedPercentage);
         }
         else {
           console.log(apiresp.message);

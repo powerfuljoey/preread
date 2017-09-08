@@ -7,7 +7,21 @@
 
       <md-tab-group>
         <md-tab label="General">
-
+          <br>
+          <form class="example-form">
+            <md-form-field class="example-full-width">
+              <input mdInput placeholder="Movement Near Expiry" >
+              <md-hint align="start"><strong>Value must be in minute</strong> </md-hint>
+              <span mdSuffix>Minutes</span>
+            </md-form-field>
+            <md-form-field class="example-full-width">
+              <input mdInput placeholder="Movement Expiry" >
+              <md-hint align="start"><strong>Value must be in minute</strong> </md-hint>
+              <span mdSuffix>Minutes</span>
+            </md-form-field>
+            <button class="pull-right" md-raised-button>Submit</button>
+          </form>
+          <br><br>
         </md-tab>
         <!-- <md-tab label="User Management">
           <div class="col-sm-6">
@@ -50,4 +64,3 @@
     </md-card-content>
   </md-card>
 </div>
-

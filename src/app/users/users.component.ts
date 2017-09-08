@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { DataSource } from '@angular/cdk';
+import { DataSource } from '@angular/cdk/table';
+// import { DataSource } from '@angular/cdk';
 import { MdPaginator, MdSort, MdDialog, MdDialogRef, MdDialogConfig, MdSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
